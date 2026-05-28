@@ -19,251 +19,77 @@
     --radius-sm: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 2rem;
-  }
+  body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 3rem; }
 
-  header {
-    padding: 1.5rem 1rem 1rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    background: var(--card);
-    margin-bottom: 1rem;
-  }
-  header h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--text);
-    letter-spacing: 0.02em;
-  }
-  header p {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-    font-weight: 300;
-    letter-spacing: 0.03em;
-  }
+  header { padding: 1.25rem 1rem 0.875rem; text-align: center; border-bottom: 1px solid var(--border); background: var(--card); margin-bottom: 1rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; color: var(--text); letter-spacing: 0.02em; }
+  header p { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 300; letter-spacing: 0.03em; }
 
-  .container {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 0.75rem;
-  }
+  .container { max-width: 480px; margin: 0 auto; padding: 0 0.75rem; }
 
-  .date-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    padding: 8px 12px;
-    background: var(--card);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-  }
-  .date-row label {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .date-row input[type=date] {
-    font-family: 'Jost', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    border: none;
-    background: transparent;
-    color: var(--text);
-    outline: none;
-  }
+  .date-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; padding: 8px 12px; background: var(--card); border-radius: var(--radius-sm); border: 1px solid var(--border); }
+  .date-row label { font-size: 11px; color: var(--muted); font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+  .date-row input[type=date] { font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 400; border: none; background: transparent; color: var(--text); outline: none; }
 
-  /* Card: photo takes almost everything */
-  .meal-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  .meal-card:focus-within {
-    box-shadow: 0 0 0 2px var(--accent-mid);
-    border-color: transparent;
-  }
+  .meal-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 10px; }
+  .meal-card:focus-within { box-shadow: 0 0 0 2px var(--accent-mid); border-color: transparent; }
 
-  .photo-box {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: var(--accent-light);
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .photo-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-  }
-  .photo-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 8px;
-  }
+  .photo-box { position: relative; width: 100%; aspect-ratio: 1/1; background: var(--accent-light); overflow: hidden; cursor: pointer; }
+  .photo-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .photo-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
   .photo-placeholder svg { width: 32px; height: 32px; color: var(--accent-mid); }
   .photo-placeholder span { font-size: 13px; font-weight: 400; color: var(--muted); }
   .photo-placeholder small { font-size: 11px; color: var(--accent-mid); }
 
-  /* Compact bottom strip */
-  .meal-fields {
-    display: flex;
-    gap: 6px;
-    padding: 6px 10px;
-    align-items: center;
-  }
-  .meal-fields input[type=text] {
-    flex: 1;
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-  }
+  .meal-fields { display: flex; gap: 6px; padding: 6px 10px; align-items: center; }
+  .meal-fields input[type=text] { flex: 1; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); outline: none; }
   .meal-fields input[type=text]:focus { border-color: var(--accent-mid); }
-  .meal-fields input[type=time] {
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    padding: 6px 8px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-    min-width: 88px;
-  }
+  .meal-fields .divider { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
+  .meal-fields input[type=time] { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); outline: none; min-width: 88px; }
   .meal-fields input[type=time]:focus { border-color: var(--accent-mid); }
-  .remove-btn {
-    background: none; border: none;
-    color: #d0ccc6; cursor: pointer;
-    font-size: 16px; line-height: 1;
-    padding: 5px;
-    border-radius: 6px;
-    transition: color 0.2s, background 0.2s;
-    flex-shrink: 0;
-  }
+  .remove-btn { background: none; border: none; color: #d0ccc6; cursor: pointer; font-size: 16px; line-height: 1; padding: 5px; border-radius: 6px; transition: color 0.2s, background 0.2s; flex-shrink: 0; }
   .remove-btn:hover { color: #e24b4a; background: #fff0f0; }
 
-  .add-btn {
-    width: 100%;
-    padding: 12px;
-    border: 1.5px dashed var(--border);
-    border-radius: var(--radius);
-    background: none;
-    color: var(--muted);
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 0.75rem;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
+  .add-btn { width: 100%; padding: 12px; border: 1.5px dashed var(--border); border-radius: var(--radius); background: none; color: var(--muted); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 0.75rem; transition: border-color 0.2s, color 0.2s, background 0.2s; }
   .add-btn:hover { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-light); }
   .add-btn svg { width: 15px; height: 15px; }
 
-  .download-btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: var(--radius);
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: background 0.2s, transform 0.1s;
-  }
+  .preview-btn { width: 100%; padding: 14px; border-radius: var(--radius); border: 1.5px solid var(--accent); background: none; color: var(--accent); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 0.6rem; transition: background 0.2s; }
+  .preview-btn:hover { background: var(--accent-light); }
+  .preview-btn svg { width: 17px; height: 17px; }
+
+  .download-btn { width: 100%; padding: 14px; border-radius: var(--radius); border: none; background: var(--accent); color: #fff; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s, transform 0.1s; }
   .download-btn:hover { background: #c94f0e; }
   .download-btn:active { transform: scale(0.98); }
   .download-btn svg { width: 17px; height: 17px; }
 
-  /* Bottom sheet */
-  .photo-choice-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.3);
-    z-index: 100;
-    align-items: flex-end;
-    justify-content: center;
-  }
+  /* Preview overlay */
+  .preview-overlay { display: none; position: fixed; inset: 0; background: rgba(20,18,16,0.85); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+  .preview-overlay.open { display: flex; flex-direction: column; }
+  .preview-inner { background: var(--card); border-radius: 20px; overflow: hidden; width: 100%; max-width: 420px; max-height: 90vh; display: flex; flex-direction: column; }
+  .preview-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .preview-header span { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--text); }
+  .preview-close { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 20px; line-height: 1; padding: 4px; }
+  .preview-scroll { overflow-y: auto; flex: 1; }
+  .preview-canvas-wrap { padding: 12px; }
+  .preview-canvas-wrap canvas { width: 100%; height: auto; display: block; border-radius: 10px; }
+  .preview-actions { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); flex-shrink: 0; }
+  .preview-actions button { flex: 1; padding: 12px; border-radius: var(--radius-sm); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s; }
+  .btn-edit { border: 1px solid var(--border); background: none; color: var(--muted); }
+  .btn-edit:hover { background: var(--bg); }
+  .btn-save { border: none; background: var(--accent); color: #fff; }
+  .btn-save:hover { background: #c94f0e; }
+  .btn-save svg, .btn-edit svg { width: 16px; height: 16px; }
+
+  /* Photo choice sheet */
+  .photo-choice-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 300; align-items: flex-end; justify-content: center; }
   .photo-choice-overlay.open { display: flex; }
-  .photo-choice-sheet {
-    background: var(--card);
-    border-radius: 20px 20px 0 0;
-    padding: 1.25rem 1rem 2rem;
-    width: 100%;
-    max-width: 480px;
-  }
-  .photo-choice-sheet h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: var(--text);
-  }
-  .choice-btn {
-    width: 100%;
-    padding: 13px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Jost', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-    transition: background 0.15s, border-color 0.15s;
-  }
+  .photo-choice-sheet { background: var(--card); border-radius: 20px 20px 0 0; padding: 1.25rem 1rem 2rem; width: 100%; max-width: 480px; }
+  .photo-choice-sheet h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; text-align: center; margin-bottom: 1rem; color: var(--text); }
+  .choice-btn { width: 100%; padding: 13px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 400; cursor: pointer; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; transition: background 0.15s, border-color 0.15s; }
   .choice-btn:hover { background: var(--accent-light); border-color: var(--accent-mid); }
   .choice-btn svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
-  .choice-cancel {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    background: none;
-    color: var(--muted);
-    font-family: 'Jost', sans-serif;
-    font-size: 14px;
-    cursor: pointer;
-    margin-top: 2px;
-  }
+  .choice-cancel { width: 100%; padding: 12px; border: none; background: none; color: var(--muted); font-family: 'Jost', sans-serif; font-size: 14px; cursor: pointer; }
   #file-camera, #file-gallery { display: none; }
 </style>
 </head>
@@ -281,20 +107,47 @@
     <label>Дата</label>
     <input type="date" id="diary-date" />
   </div>
-
   <div id="meals-container"></div>
-
   <button class="add-btn" onclick="addMeal()">
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
     Добавить приём пищи
   </button>
-
-  <button class="download-btn" onclick="downloadCollage()">
-    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 3v12"/></svg>
-    Скачать коллаж дня
+  <button class="preview-btn" onclick="openPreview()">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    Предпросмотр коллажа
+  </button>
+  <button class="download-btn" onclick="saveCollage()">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25"/></svg>
+    Сохранить в галерею
   </button>
 </div>
 
+<!-- Preview overlay -->
+<div class="preview-overlay" id="preview-overlay">
+  <div class="preview-inner">
+    <div class="preview-header">
+      <span>Предпросмотр</span>
+      <button class="preview-close" onclick="closePreview()">✕</button>
+    </div>
+    <div class="preview-scroll">
+      <div class="preview-canvas-wrap">
+        <canvas id="preview-canvas"></canvas>
+      </div>
+    </div>
+    <div class="preview-actions">
+      <button class="btn-edit" onclick="closePreview()">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg>
+        Изменить
+      </button>
+      <button class="btn-save" onclick="saveCollage()">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25"/></svg>
+        Сохранить
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Photo choice sheet -->
 <div class="photo-choice-overlay" id="photo-overlay" onclick="closeOverlay(event)">
   <div class="photo-choice-sheet">
     <h3>Добавить фото</h3>
@@ -317,6 +170,7 @@
 let meals = [];
 let mealCounter = 0;
 let activeMealId = null;
+let lastCanvas = null;
 
 document.getElementById('diary-date').value = new Date().toISOString().split('T')[0];
 
@@ -333,7 +187,7 @@ function renderMeals() {
   const container = document.getElementById('meals-container');
   container.innerHTML = '';
   meals.forEach((meal, idx) => {
-    const placeholder = defaultNames[idx] || ('Приём ' + (idx+1));
+    const ph = defaultNames[idx] || ('Приём ' + (idx+1));
     const card = document.createElement('div');
     card.className = 'meal-card';
     card.innerHTML = `
@@ -348,7 +202,8 @@ function renderMeals() {
         }
       </div>
       <div class="meal-fields">
-        <input type="text" placeholder="${placeholder}" value="${meal.label}" oninput="updateLabel(${meal.id},this.value)" />
+        <input type="text" placeholder="${ph}" value="${meal.label}" oninput="updateLabel(${meal.id},this.value)" />
+        <div class="divider"></div>
         <input type="time" value="${meal.time}" onchange="updateTime(${meal.id},this.value)" />
         <button class="remove-btn" onclick="removeMeal(${meal.id})">✕</button>
       </div>
@@ -370,8 +225,7 @@ function handleHiddenPhoto(event) {
   reader.onload = e => {
     const meal = meals.find(m => m.id === activeMealId);
     if (meal) { meal.imgSrc = e.target.result; renderMeals(); }
-    closeSheet();
-    event.target.value = '';
+    closeSheet(); event.target.value = '';
   };
   reader.readAsDataURL(file);
 }
@@ -395,60 +249,48 @@ function roundRect(ctx, x, y, w, h, r) {
 
 function drawCoverImage(ctx, img, x, y, size) {
   const iw = img.naturalWidth, ih = img.naturalHeight;
-  const scale = Math.max(size / iw, size / ih);
-  const sw = size / scale, sh = size / scale;
-  const sx = (iw - sw) / 2, sy = (ih - sh) / 2;
-  ctx.drawImage(img, sx, sy, sw, sh, x, y, size, size);
+  const scale = Math.max(size/iw, size/ih);
+  const sw = size/scale, sh = size/scale;
+  ctx.drawImage(img, (iw-sw)/2, (ih-sh)/2, sw, sh, x, y, size, size);
 }
 
-async function downloadCollage() {
-  if (meals.length === 0) { alert('Сначала добавьте хотя бы один приём пищи!'); return; }
-
+async function buildCanvas() {
   const dateVal = document.getElementById('diary-date').value;
   const dateLabel = dateVal
-    ? new Date(dateVal + 'T12:00:00').toLocaleDateString('ru-RU', {day:'numeric', month:'long', year:'numeric'})
+    ? new Date(dateVal+'T12:00:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})
     : '';
 
   const COLS = meals.length === 1 ? 1 : 2;
-  const GAP = 6;
-  const OUTER = 10;
-  const LABEL_H = 24;
+  const GAP = 6, OUTER = 10, LABEL_H = 26;
   const DATE_H = dateLabel ? 36 : 0;
   const ROWS = Math.ceil(meals.length / COLS);
-
-  // IMG_SIZE fills available width
   const TOTAL_W = 720;
-  const IMG_SIZE = Math.floor((TOTAL_W - OUTER * 2 - (COLS - 1) * GAP) / COLS);
-  const W = OUTER * 2 + COLS * IMG_SIZE + (COLS - 1) * GAP;
-  const H = DATE_H + OUTER + ROWS * (IMG_SIZE + LABEL_H) + (ROWS - 1) * GAP + OUTER;
+  const IMG_SIZE = Math.floor((TOTAL_W - OUTER*2 - (COLS-1)*GAP) / COLS);
+  const W = OUTER*2 + COLS*IMG_SIZE + (COLS-1)*GAP;
+  const H = DATE_H + OUTER + ROWS*(IMG_SIZE+LABEL_H) + (ROWS-1)*GAP + OUTER;
 
   const canvas = document.createElement('canvas');
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
 
   ctx.fillStyle = '#faf8f5';
-  ctx.fillRect(0, 0, W, H);
+  ctx.fillRect(0,0,W,H);
 
   if (dateLabel) {
     ctx.fillStyle = '#9a9590';
     ctx.font = '300 20px Jost, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(dateLabel.toUpperCase(), W / 2, 26);
-    ctx.strokeStyle = '#ede9e3';
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(OUTER, 33); ctx.lineTo(W - OUTER, 33); ctx.stroke();
+    ctx.fillText(dateLabel.toUpperCase(), W/2, 24);
+    ctx.strokeStyle = '#ede9e3'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(OUTER,31); ctx.lineTo(W-OUTER,31); ctx.stroke();
   }
-
-  const names = ['Завтрак','Перекус','Обед','Перекус 2','Ужин','Перекус 3'];
 
   for (let i = 0; i < meals.length; i++) {
     const meal = meals[i];
-    const col = i % COLS;
-    const row = Math.floor(i / COLS);
-    const x = OUTER + col * (IMG_SIZE + GAP);
-    const y = DATE_H + OUTER + row * (IMG_SIZE + LABEL_H + GAP);
+    const col = i % COLS, row = Math.floor(i/COLS);
+    const x = OUTER + col*(IMG_SIZE+GAP);
+    const y = DATE_H + OUTER + row*(IMG_SIZE+LABEL_H+GAP);
 
-    // Photo square
     ctx.save();
     roundRect(ctx, x, y, IMG_SIZE, IMG_SIZE, 10);
     ctx.clip();
@@ -456,31 +298,73 @@ async function downloadCollage() {
       const img = await loadImage(meal.imgSrc);
       drawCoverImage(ctx, img, x, y, IMG_SIZE);
     } else {
-      ctx.fillStyle = '#f4efe8';
-      ctx.fillRect(x, y, IMG_SIZE, IMG_SIZE);
-      ctx.fillStyle = '#c8c3bc';
-      ctx.font = '300 16px Jost, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('нет фото', x + IMG_SIZE / 2, y + IMG_SIZE / 2 + 6);
+      ctx.fillStyle = '#f4efe8'; ctx.fillRect(x,y,IMG_SIZE,IMG_SIZE);
+      ctx.fillStyle = '#c8c3bc'; ctx.font='300 16px Jost,sans-serif'; ctx.textAlign='center';
+      ctx.fillText('нет фото', x+IMG_SIZE/2, y+IMG_SIZE/2+6);
     }
     ctx.restore();
 
-    // Label + time on one line
-    const labelText = meal.label || names[i] || ('Приём ' + (i+1));
+    // Label · time in one row with divider
+    const labelText = meal.label || defaultNames[i] || ('Приём '+(i+1));
+    const baseY = y + IMG_SIZE + 19;
     ctx.textAlign = 'left';
     ctx.fillStyle = '#1c1a18';
     ctx.font = '400 15px Jost, sans-serif';
-    ctx.fillText(labelText, x + 2, y + IMG_SIZE + 18);
+    ctx.fillText(labelText, x+2, baseY);
+    const labelW = ctx.measureText(labelText).width;
+    // divider
+    const divX = x + 2 + labelW + 10;
+    ctx.strokeStyle = '#d0ccc6'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(divX, baseY-11); ctx.lineTo(divX, baseY+2); ctx.stroke();
+    // time
     ctx.fillStyle = '#e65c13';
     ctx.font = '300 13px Jost, sans-serif';
-    const timeX = x + 2 + ctx.measureText(labelText).width + 8;
-    ctx.fillText(meal.time || '', timeX, y + IMG_SIZE + 18);
+    ctx.fillText(meal.time||'', divX+10, baseY);
   }
 
-  const link = document.createElement('a');
-  link.download = 'дневник-' + (dateVal || 'сегодня') + '.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
+  return canvas;
+}
+
+async function openPreview() {
+  if (meals.length === 0) { alert('Сначала добавьте хотя бы один приём пищи!'); return; }
+  const canvas = await buildCanvas();
+  lastCanvas = canvas;
+  const display = document.getElementById('preview-canvas');
+  display.width = canvas.width;
+  display.height = canvas.height;
+  display.getContext('2d').drawImage(canvas, 0, 0);
+  document.getElementById('preview-overlay').classList.add('open');
+}
+
+function closePreview() {
+  document.getElementById('preview-overlay').classList.remove('open');
+}
+
+async function saveCollage() {
+  if (meals.length === 0) { alert('Сначала добавьте хотя бы один приём пищи!'); return; }
+  const canvas = lastCanvas || await buildCanvas();
+  lastCanvas = canvas;
+
+  canvas.toBlob(async blob => {
+    const dateVal = document.getElementById('diary-date').value;
+    const filename = 'дневник-' + (dateVal||'сегодня') + '.png';
+    const file = new File([blob], filename, { type: 'image/png' });
+
+    // Try Web Share API (saves to gallery on mobile)
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: 'Дневник питания' });
+        return;
+      } catch(e) { /* fallback */ }
+    }
+    // Fallback: download
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+
+  closePreview();
 }
 
 addMeal();
