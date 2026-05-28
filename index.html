@@ -4,23 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Дневник питания</title>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
     --accent: #e65c13;
-    --accent-light: #fff0e8;
-    --accent-dark: #b84500;
-    --bg: #faf9f7;
+    --accent-light: #fff5ef;
+    --accent-mid: #f4b48a;
+    --bg: #faf8f5;
     --card: #ffffff;
-    --border: #e8e4de;
-    --text: #1a1a18;
-    --muted: #8a8680;
+    --border: #ede9e3;
+    --text: #1c1a18;
+    --muted: #9a9590;
     --radius: 16px;
     --radius-sm: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Jost', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -28,207 +28,243 @@
   }
 
   header {
-    background: var(--accent);
-    padding: 1.5rem 1.25rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 0; right: 0;
-    height: 40px;
-    background: var(--bg);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    padding: 1.5rem 1rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    margin-bottom: 1rem;
   }
   header h1 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
     font-weight: 500;
-    color: #fff;
-    letter-spacing: -0.5px;
+    color: var(--text);
+    letter-spacing: 0.02em;
   }
   header p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.75);
-    margin-top: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
   }
 
   .container {
     max-width: 480px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
   }
 
   .date-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 1.5rem 0 1rem;
+    margin-bottom: 0.75rem;
+    padding: 8px 12px;
+    background: var(--card);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
   }
   .date-row label {
-    font-size: 13px;
+    font-size: 11px;
     color: var(--muted);
-    font-weight: 500;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .date-row input[type=date] {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Jost', sans-serif;
     font-size: 14px;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--border);
-    background: var(--card);
+    font-weight: 400;
+    border: none;
+    background: transparent;
     color: var(--text);
     outline: none;
   }
-  .date-row input[type=date]:focus {
-    border-color: var(--accent);
-  }
 
+  /* Card: photo takes almost everything */
   .meal-card {
     background: var(--card);
     border-radius: var(--radius);
-    border: 1.5px solid var(--border);
-    padding: 1rem;
-    margin-bottom: 14px;
-    transition: border-color 0.2s;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 10px;
   }
   .meal-card:focus-within {
-    border-color: var(--accent);
-  }
-
-  .meal-num {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
+    box-shadow: 0 0 0 2px var(--accent-mid);
+    border-color: transparent;
   }
 
   .photo-box {
-    width: 100%;
-    height: 160px;
-    background: var(--accent-light);
-    border-radius: var(--radius-sm);
-    border: 2px dashed #f0b896;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
     position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--accent-light);
     overflow: hidden;
-    transition: background 0.2s;
+    cursor: pointer;
   }
-  .photo-box:hover { background: #ffe6d4; }
   .photo-box img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: calc(var(--radius-sm) - 2px);
+    object-position: center center;
+    display: block;
   }
   .photo-placeholder {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 8px;
-    color: var(--accent);
-  }
-  .photo-placeholder svg { width: 32px; height: 32px; }
-  .photo-placeholder span { font-size: 13px; font-weight: 500; }
-  .photo-box input[type=file] {
     position: absolute; inset: 0;
-    opacity: 0; cursor: pointer;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 8px;
   }
+  .photo-placeholder svg { width: 32px; height: 32px; color: var(--accent-mid); }
+  .photo-placeholder span { font-size: 13px; font-weight: 400; color: var(--muted); }
+  .photo-placeholder small { font-size: 11px; color: var(--accent-mid); }
 
+  /* Compact bottom strip */
   .meal-fields {
     display: flex;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 6px;
+    padding: 6px 10px;
     align-items: center;
   }
   .meal-fields input[type=text] {
     flex: 1;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 9px 12px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--border);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
     background: var(--bg);
     color: var(--text);
     outline: none;
   }
-  .meal-fields input[type=text]:focus { border-color: var(--accent); }
+  .meal-fields input[type=text]:focus { border-color: var(--accent-mid); }
   .meal-fields input[type=time] {
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 9px 10px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--border);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
     background: var(--bg);
     color: var(--text);
     outline: none;
-    min-width: 100px;
+    min-width: 88px;
   }
-  .meal-fields input[type=time]:focus { border-color: var(--accent); }
+  .meal-fields input[type=time]:focus { border-color: var(--accent-mid); }
   .remove-btn {
     background: none; border: none;
-    color: #ccc; cursor: pointer;
-    font-size: 20px; line-height: 1;
-    padding: 4px 6px;
-    border-radius: 8px;
+    color: #d0ccc6; cursor: pointer;
+    font-size: 16px; line-height: 1;
+    padding: 5px;
+    border-radius: 6px;
     transition: color 0.2s, background 0.2s;
+    flex-shrink: 0;
   }
   .remove-btn:hover { color: #e24b4a; background: #fff0f0; }
 
   .add-btn {
     width: 100%;
-    padding: 13px;
-    border: 2px dashed var(--border);
+    padding: 12px;
+    border: 1.5px dashed var(--border);
     border-radius: var(--radius);
     background: none;
     color: var(--muted);
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .add-btn:hover { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-light); }
+  .add-btn svg { width: 15px; height: 15px; }
+
+  .download-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 1rem;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    transition: background 0.2s, transform 0.1s;
   }
-  .add-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-light);
-  }
-  .add-btn svg { width: 18px; height: 18px; }
+  .download-btn:hover { background: #c94f0e; }
+  .download-btn:active { transform: scale(0.98); }
+  .download-btn svg { width: 17px; height: 17px; }
 
-  .download-btn {
+  /* Bottom sheet */
+  .photo-choice-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 100;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .photo-choice-overlay.open { display: flex; }
+  .photo-choice-sheet {
+    background: var(--card);
+    border-radius: 20px 20px 0 0;
+    padding: 1.25rem 1rem 2rem;
     width: 100%;
-    padding: 15px;
-    border-radius: var(--radius);
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    font-family: 'Unbounded', sans-serif;
+    max-width: 480px;
+  }
+  .photo-choice-sheet h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .choice-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
     font-size: 14px;
     font-weight: 400;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.2s, transform 0.1s;
-    letter-spacing: -0.3px;
+    gap: 12px;
+    margin-bottom: 8px;
+    transition: background 0.15s, border-color 0.15s;
   }
-  .download-btn:hover { background: var(--accent-dark); }
-  .download-btn:active { transform: scale(0.98); }
-  .download-btn svg { width: 20px; height: 20px; }
+  .choice-btn:hover { background: var(--accent-light); border-color: var(--accent-mid); }
+  .choice-btn svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+  .choice-cancel {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 2px;
+  }
+  #file-camera, #file-gallery { display: none; }
 </style>
 </head>
 <body>
@@ -236,12 +272,11 @@
 <header>
   <div class="container">
     <h1>Дневник питания</h1>
-    <p>Фотографируйте каждый приём и скачивайте коллаж</p>
+    <p>фото каждого приёма — коллаж дня</p>
   </div>
 </header>
 
 <div class="container">
-
   <div class="date-row">
     <label>Дата</label>
     <input type="date" id="diary-date" />
@@ -250,51 +285,67 @@
   <div id="meals-container"></div>
 
   <button class="add-btn" onclick="addMeal()">
-    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
     Добавить приём пищи
   </button>
 
   <button class="download-btn" onclick="downloadCollage()">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 3v12"/></svg>
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 3v12"/></svg>
     Скачать коллаж дня
   </button>
-
 </div>
+
+<div class="photo-choice-overlay" id="photo-overlay" onclick="closeOverlay(event)">
+  <div class="photo-choice-sheet">
+    <h3>Добавить фото</h3>
+    <button class="choice-btn" onclick="triggerCamera()">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/></svg>
+      Сделать фото
+    </button>
+    <button class="choice-btn" onclick="triggerGallery()">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+      Выбрать из галереи
+    </button>
+    <button class="choice-cancel" onclick="closeSheet()">Отмена</button>
+  </div>
+</div>
+
+<input type="file" id="file-camera" accept="image/*" capture="environment" onchange="handleHiddenPhoto(event)" />
+<input type="file" id="file-gallery" accept="image/*" onchange="handleHiddenPhoto(event)" />
 
 <script>
 let meals = [];
 let mealCounter = 0;
+let activeMealId = null;
 
 document.getElementById('diary-date').value = new Date().toISOString().split('T')[0];
 
 function addMeal() {
   const id = ++mealCounter;
   const now = new Date();
-  const hh = String(now.getHours()).padStart(2,'0');
-  const mm = String(now.getMinutes()).padStart(2,'0');
-  meals.push({ id, label: '', time: hh+':'+mm, imgSrc: null });
+  meals.push({ id, label: '', time: String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'), imgSrc: null });
   renderMeals();
 }
+
+const defaultNames = ['Завтрак','Перекус','Обед','Перекус 2','Ужин','Перекус 3'];
 
 function renderMeals() {
   const container = document.getElementById('meals-container');
   container.innerHTML = '';
   meals.forEach((meal, idx) => {
-    const names = ['Завтрак','Перекус','Обед','Перекус 2','Ужин','Перекус 3'];
-    const placeholder = names[idx] || ('Приём ' + (idx+1));
+    const placeholder = defaultNames[idx] || ('Приём ' + (idx+1));
     const card = document.createElement('div');
     card.className = 'meal-card';
     card.innerHTML = `
-      <div class="meal-num">Приём ${idx + 1}</div>
-      <div class="photo-box" id="photobox-${meal.id}">
+      <div class="photo-box" onclick="openPhotoChoice(${meal.id})">
         ${meal.imgSrc
-          ? `<img src="${meal.imgSrc}" alt="Фото" />`
+          ? `<img src="${meal.imgSrc}" alt="Фото приёма" />`
           : `<div class="photo-placeholder">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/></svg>
-              <span>Нажмите, чтобы добавить фото</span>
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/></svg>
+              <span>Добавить фото</span>
+              <small>камера или галерея</small>
             </div>`
         }
-        <input type="file" accept="image/*" capture="environment" onchange="handlePhoto(event,${meal.id})" />
       </div>
       <div class="meal-fields">
         <input type="text" placeholder="${placeholder}" value="${meal.label}" oninput="updateLabel(${meal.id},this.value)" />
@@ -306,51 +357,48 @@ function renderMeals() {
   });
 }
 
-function handlePhoto(event, id) {
+function openPhotoChoice(id) { activeMealId = id; document.getElementById('photo-overlay').classList.add('open'); }
+function closeSheet() { document.getElementById('photo-overlay').classList.remove('open'); activeMealId = null; }
+function closeOverlay(e) { if (e.target === document.getElementById('photo-overlay')) closeSheet(); }
+function triggerCamera() { document.getElementById('file-camera').click(); }
+function triggerGallery() { document.getElementById('file-gallery').click(); }
+
+function handleHiddenPhoto(event) {
   const file = event.target.files[0];
-  if (!file) return;
+  if (!file || activeMealId === null) return;
   const reader = new FileReader();
   reader.onload = e => {
-    const meal = meals.find(m => m.id === id);
+    const meal = meals.find(m => m.id === activeMealId);
     if (meal) { meal.imgSrc = e.target.result; renderMeals(); }
+    closeSheet();
+    event.target.value = '';
   };
   reader.readAsDataURL(file);
 }
 
-function updateLabel(id, val) {
-  const m = meals.find(m => m.id === id);
-  if (m) m.label = val;
-}
-function updateTime(id, val) {
-  const m = meals.find(m => m.id === id);
-  if (m) m.time = val;
-}
-function removeMeal(id) {
-  meals = meals.filter(m => m.id !== id);
-  renderMeals();
+function updateLabel(id, val) { const m = meals.find(m => m.id === id); if (m) m.label = val; }
+function updateTime(id, val) { const m = meals.find(m => m.id === id); if (m) m.time = val; }
+function removeMeal(id) { meals = meals.filter(m => m.id !== id); renderMeals(); }
+
+function loadImage(src) {
+  return new Promise((res, rej) => { const img = new Image(); img.onload = () => res(img); img.onerror = rej; img.src = src; });
 }
 
 function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
-  ctx.moveTo(x+r, y);
-  ctx.lineTo(x+w-r, y);
-  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
-  ctx.lineTo(x+w, y+h-r);
-  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-  ctx.lineTo(x+r, y+h);
-  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
-  ctx.lineTo(x, y+r);
-  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
   ctx.closePath();
 }
 
-function loadImage(src) {
-  return new Promise((res, rej) => {
-    const img = new Image();
-    img.onload = () => res(img);
-    img.onerror = rej;
-    img.src = src;
-  });
+function drawCoverImage(ctx, img, x, y, size) {
+  const iw = img.naturalWidth, ih = img.naturalHeight;
+  const scale = Math.max(size / iw, size / ih);
+  const sw = size / scale, sh = size / scale;
+  const sx = (iw - sw) / 2, sy = (ih - sh) / 2;
+  ctx.drawImage(img, sx, sy, sw, sh, x, y, size, size);
 }
 
 async function downloadCollage() {
@@ -361,33 +409,35 @@ async function downloadCollage() {
     ? new Date(dateVal + 'T12:00:00').toLocaleDateString('ru-RU', {day:'numeric', month:'long', year:'numeric'})
     : '';
 
-  const ACCENT = '#e65c13';
   const COLS = meals.length === 1 ? 1 : 2;
-  const CARD_W = 340, CARD_H = 230;
-  const PAD = 20, HEADER_H = 90, FOOTER_H = 50;
+  const GAP = 6;
+  const OUTER = 10;
+  const LABEL_H = 24;
+  const DATE_H = dateLabel ? 36 : 0;
   const ROWS = Math.ceil(meals.length / COLS);
-  const W = COLS * CARD_W + (COLS + 1) * PAD;
-  const H = HEADER_H + ROWS * (CARD_H + PAD) + PAD + FOOTER_H;
+
+  // IMG_SIZE fills available width
+  const TOTAL_W = 720;
+  const IMG_SIZE = Math.floor((TOTAL_W - OUTER * 2 - (COLS - 1) * GAP) / COLS);
+  const W = OUTER * 2 + COLS * IMG_SIZE + (COLS - 1) * GAP;
+  const H = DATE_H + OUTER + ROWS * (IMG_SIZE + LABEL_H) + (ROWS - 1) * GAP + OUTER;
 
   const canvas = document.createElement('canvas');
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = '#faf9f7';
+  ctx.fillStyle = '#faf8f5';
   ctx.fillRect(0, 0, W, H);
 
-  ctx.fillStyle = ACCENT;
-  ctx.fillRect(0, 0, W, HEADER_H - 20);
-  roundRect(ctx, 0, HEADER_H - 40, W, 40, 20);
-  ctx.fill();
-
-  ctx.fillStyle = '#fff';
-  ctx.font = '500 24px Unbounded, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('Дневник питания', W / 2, 38);
-  ctx.font = '400 14px Nunito, sans-serif';
-  ctx.fillStyle = 'rgba(255,255,255,0.8)';
-  ctx.fillText(dateLabel, W / 2, 60);
+  if (dateLabel) {
+    ctx.fillStyle = '#9a9590';
+    ctx.font = '300 20px Jost, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(dateLabel.toUpperCase(), W / 2, 26);
+    ctx.strokeStyle = '#ede9e3';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(OUTER, 33); ctx.lineTo(W - OUTER, 33); ctx.stroke();
+  }
 
   const names = ['Завтрак','Перекус','Обед','Перекус 2','Ужин','Перекус 3'];
 
@@ -395,53 +445,37 @@ async function downloadCollage() {
     const meal = meals[i];
     const col = i % COLS;
     const row = Math.floor(i / COLS);
-    const x = PAD + col * (CARD_W + PAD);
-    const y = HEADER_H + row * (CARD_H + PAD);
+    const x = OUTER + col * (IMG_SIZE + GAP);
+    const y = DATE_H + OUTER + row * (IMG_SIZE + LABEL_H + GAP);
 
-    ctx.fillStyle = '#ffffff';
-    roundRect(ctx, x, y, CARD_W, CARD_H, 14);
-    ctx.fill();
-    ctx.strokeStyle = '#e8e4de';
-    ctx.lineWidth = 1;
-    roundRect(ctx, x, y, CARD_W, CARD_H, 14);
-    ctx.stroke();
-
-    const IMG_H = 170;
+    // Photo square
+    ctx.save();
+    roundRect(ctx, x, y, IMG_SIZE, IMG_SIZE, 10);
+    ctx.clip();
     if (meal.imgSrc) {
       const img = await loadImage(meal.imgSrc);
-      ctx.save();
-      roundRect(ctx, x, y, CARD_W, IMG_H, 14);
-      ctx.clip();
-      ctx.drawImage(img, x, y, CARD_W, IMG_H);
-      ctx.restore();
+      drawCoverImage(ctx, img, x, y, IMG_SIZE);
     } else {
-      ctx.fillStyle = '#fff0e8';
-      ctx.save();
-      roundRect(ctx, x, y, CARD_W, IMG_H, 14);
-      ctx.clip();
-      ctx.fill();
-      ctx.restore();
-      ctx.fillStyle = '#f0b896';
-      ctx.font = '400 13px Nunito, sans-serif';
+      ctx.fillStyle = '#f4efe8';
+      ctx.fillRect(x, y, IMG_SIZE, IMG_SIZE);
+      ctx.fillStyle = '#c8c3bc';
+      ctx.font = '300 16px Jost, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Нет фото', x + CARD_W / 2, y + IMG_H / 2 + 5);
+      ctx.fillText('нет фото', x + IMG_SIZE / 2, y + IMG_SIZE / 2 + 6);
     }
+    ctx.restore();
 
+    // Label + time on one line
     const labelText = meal.label || names[i] || ('Приём ' + (i+1));
-    ctx.fillStyle = '#1a1a18';
-    ctx.font = '600 15px Nunito, sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillText(labelText, x + 14, y + IMG_H + 22);
-
-    ctx.fillStyle = ACCENT;
-    ctx.font = '500 13px Nunito, sans-serif';
-    ctx.fillText(meal.time || '', x + 14, y + IMG_H + 42);
+    ctx.fillStyle = '#1c1a18';
+    ctx.font = '400 15px Jost, sans-serif';
+    ctx.fillText(labelText, x + 2, y + IMG_SIZE + 18);
+    ctx.fillStyle = '#e65c13';
+    ctx.font = '300 13px Jost, sans-serif';
+    const timeX = x + 2 + ctx.measureText(labelText).width + 8;
+    ctx.fillText(meal.time || '', timeX, y + IMG_SIZE + 18);
   }
-
-  ctx.fillStyle = '#b4b2a9';
-  ctx.font = '400 12px Nunito, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('Дневник питания', W / 2, H - 18);
 
   const link = document.createElement('a');
   link.download = 'дневник-' + (dateVal || 'сегодня') + '.png';
