@@ -258,19 +258,11 @@ function closePreview(e) {
 
 function saveFromPreview() {
   if (!lastCollageDataUrl) return;
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (isIOS) {
-    // iOS: open in new tab - user saves with long press
-    const w = window.open();
-    w.document.write('<html><head><meta name="viewport" content="width=device-width"/><style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh;}img{max-width:100%;}</style></head><body><img src="' + lastCollageDataUrl + '"/><p style="color:#fff;text-align:center;padding:10px;font-family:sans-serif;font-size:14px;">Нажмите и удержите фото → Сохранить в фото</p></body></html>');
-    w.document.close();
-  } else {
-    const dateVal = document.getElementById('diary-date').value;
-    const link = document.createElement('a');
-    link.download = 'дневник-' + (dateVal||'сегодня') + '.png';
-    link.href = lastCollageDataUrl;
-    link.click();
-  }
+  const dateVal = document.getElementById('diary-date').value;
+  const link = document.createElement('a');
+  link.download = 'дневник-' + (dateVal||'сегодня') + '.png';
+  link.href = lastCollageDataUrl;
+  link.click();
   closePreviewModal();
 }
 
@@ -412,18 +404,11 @@ async function downloadCollage() {
   if (meals.length === 0) { alert('Сначала добавьте хотя бы один приём пищи!'); return; }
   const dataUrl = await buildCollage();
   if (!dataUrl) return;
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (isIOS) {
-    const w = window.open();
-    w.document.write('<html><head><meta name="viewport" content="width=device-width"/><style>body{margin:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;}img{max-width:100%;}</style></head><body><img src="' + dataUrl + '"/><p style="color:#fff;text-align:center;padding:10px;font-family:sans-serif;font-size:14px;">Нажмите и удержите фото → Сохранить в фото</p></body></html>');
-    w.document.close();
-  } else {
-    const dateVal = document.getElementById('diary-date').value;
-    const link = document.createElement('a');
-    link.download = 'дневник-' + (dateVal||'сегодня') + '.png';
-    link.href = dataUrl;
-    link.click();
-  }
+  const dateVal = document.getElementById('diary-date').value;
+  const link = document.createElement('a');
+  link.download = 'дневник-' + (dateVal||'сегодня') + '.png';
+  link.href = dataUrl;
+  link.click();
 }
 
 addMeal();
