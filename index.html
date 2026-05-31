@@ -145,6 +145,7 @@ header p { font-size: 13px; color: var(--muted); margin-top: 3px; font-weight: 3
       <img id="preview-img" src="" alt="Предпросмотр коллажа"/>
     </div>
     <div class="preview-footer">
+      <p id="ios-hint" style="display:none;text-align:center;font-size:13px;color:#9a9590;margin-bottom:10px;font-family:'Outfit',sans-serif;">Нажмите и удержите фото выше → «Сохранить в фото»</p>
       <button class="preview-save-btn" onclick="saveFromPreview()" id="save-btn">Сохранить фото</button>
     </div>
   </div>
@@ -246,6 +247,14 @@ async function previewCollage() {
   lastCollageDataUrl = dataUrl;
   document.getElementById('preview-img').src = dataUrl;
   document.getElementById('preview-overlay').classList.add('open');
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (isIOS) {
+    document.getElementById('ios-hint').style.display = 'block';
+    document.getElementById('save-btn').style.display = 'none';
+  } else {
+    document.getElementById('ios-hint').style.display = 'none';
+    document.getElementById('save-btn').style.display = 'block';
+  }
 }
 
 function closePreviewModal() {
@@ -258,11 +267,18 @@ function closePreview(e) {
 
 function saveFromPreview() {
   if (!lastCollageDataUrl) return;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (isIOS) {
+    // On iOS just hint - image is already visible in preview for long press
+    return;
+  }
   const dateVal = document.getElementById('diary-date').value;
   const link = document.createElement('a');
   link.download = 'дневник-' + (dateVal||'сегодня') + '.png';
   link.href = lastCollageDataUrl;
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
   closePreviewModal();
 }
 
@@ -402,13 +418,21 @@ async function buildCollage() {
 
 async function downloadCollage() {
   if (meals.length === 0) { alert('Сначала добавьте хотя бы один приём пищи!'); return; }
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (isIOS) {
+    // iOS: show preview so user can long-press to save
+    await previewCollage();
+    return;
+  }
   const dataUrl = await buildCollage();
   if (!dataUrl) return;
   const dateVal = document.getElementById('diary-date').value;
   const link = document.createElement('a');
   link.download = 'дневник-' + (dateVal||'сегодня') + '.png';
   link.href = dataUrl;
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
 }
 
 addMeal();
